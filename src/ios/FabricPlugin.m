@@ -86,7 +86,7 @@
     NSMutableDictionary *userInfoDictionary = [NSMutableDictionary dictionary];
     [userInfoDictionary setObject: logMessage forKey: @"ErrorInfo"];
     
-    NSError *errorToLog = [NSError errorWithDomain: @"JavaScript Error" code:200 userInfo: logMessage];
+    NSError *errorToLog = [NSError errorWithDomain: @"JavaScript Error" code:200 userInfo: userInfoDictionary];
     
     if(errorToLog)
     {
