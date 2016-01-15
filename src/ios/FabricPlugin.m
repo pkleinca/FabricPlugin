@@ -82,9 +82,15 @@
 {
     NSMutableDictionary *options = [command argumentAtIndex:0];
     NSString *logMessage = [options objectForKey:@"message"];
-    if(logMessage)
+
+    NSMutableDictionary *userInfoDictionary = [NSMutableDictionary dictionary];
+    [userInfoDictionary setObject: logMessage forKey: @"ErrorInfo"];
+    
+    NSError *errorToLog = [NSError errorWithDomain: @"JavaScript Error" code:200 userInfo: logMessage];
+    
+    if(errorToLog)
     {
-        CLSNSLog(@"%@",logMessage);
+        [[Crashlytics sharedInstance] recordError: errorToLog];
     }
 }
 
